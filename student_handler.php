@@ -3,7 +3,7 @@ session_start();
 include_once 'includes/studentClass.php';
 $studentObj = new studentClass;
 
-$action = $_POST['action'];
+$action = $_REQUEST['action'];
 
 if($action == 'add')
 {
@@ -55,7 +55,7 @@ elseif($action == 'edit')
 	
 	$data['course_id'] =  $_POST['course'];
 	
-	if($studentObj->edit_student($data,$student_id))
+	if($studentObj->editStudent($data,$student_id))
 	{
 		$_SESSION['msg'] = "Edited Successfully";
 	}
@@ -64,6 +64,22 @@ elseif($action == 'edit')
 		$_SESSION['msg'] = "Editing Failed!!";
 	}
 	
+	header("Location: dashboard_page.php");
+	die();
+}
+elseif($action == 'delete')
+{
+	$student_id = $_REQUEST['student_id'];	
+	
+	if($studentObj->deleteStudent($student_id))
+	{
+		$_SESSION['msg'] = "Deleted Successfully";
+	}
+	else
+	{
+		$_SESSION['msg'] = "Deleting Failed!!";
+	}
+
 	header("Location: dashboard_page.php");
 	die();
 }

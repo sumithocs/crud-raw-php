@@ -32,6 +32,7 @@ $student_list = $student->getStudentList();
   		<div class="login-detail"><h1><?php echo "Welcome ". $_SESSION['login_user'];?></h1></div>
   		<div class="page-title"><h3>Student List</h3></div>
   		<div class="login-detail"><a href="add_student_page.php"><h3>Add New</h3></a></div> 
+  		<div><p style="color: red;"><?php if(isset($_SESSION['msg'])){echo $_SESSION['msg'];unset($_SESSION['msg']);}?></p></div>
     	  
   			<div class="wrap">
   				<div class="column-header">Photo</div>
@@ -50,7 +51,11 @@ $student_list = $student->getStudentList();
   					<div class="column-<?php echo $style;?>"><img alt="student photo" src="photos/<?php echo $student['photo'];?>" width="100"></div>
   					<div class="column-<?php echo $style;?>"><?php echo $student['fname'];?> <?php echo $student['lname'];?></div>
   					<div class="column-<?php echo $style;?>"><?php echo $student['coursename'];?></div>
-  					<div class="column-<?php echo $style;?>"><a href="edit_student_page.php?student_id=<?php echo $student['student_id'];?>"><img alt="edit record" src="assets/edit.png" style="margin: 5px;"></a><img alt="delete record" src="assets/delete.png" style="margin: 5px;"></div>
+  					<div class="column-<?php echo $style;?>">
+  					<a href="edit_student_page.php?student_id=<?php echo $student['student_id'];?>"><img alt="edit record" src="assets/edit.png" style="margin: 5px;"></a>
+  					<a href="student_handler.php?action=delete&student_id=<?php echo $student['student_id'];?>"><img alt="delete record" src="assets/delete.png" style="margin: 5px;"></a>
+  					<img alt="view record" src="assets/view.png" style="margin: 5px;">
+  					</div>
   				
   				<?php }?>
   			</div>

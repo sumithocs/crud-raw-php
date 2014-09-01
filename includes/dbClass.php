@@ -103,6 +103,16 @@ class dbClass{
 	}
 	
 	
+	function deleteRecords($table,$conditions){
+	
+		//DELETE FROM Customers WHERE CustomerName='Alfreds Futterkiste';
+		$query = "DELETE FROM ".$table;
+		$query .= " WHERE ".$conditions;
+		mysql_query($query) or die(mysql_error());
+		return mysql_affected_rows();
+	
+	}
+	
 }
 
 ?>

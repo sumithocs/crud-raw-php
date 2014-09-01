@@ -30,9 +30,18 @@ class studentClass{
 		return $records;
 	}
 	
-	function edit_student($data,$student_id){		
-		$insert_id = $this->db->updateRecords('tbl_student',$data,'student_id = '.$student_id);
-		if($insert_id>0){
+	function editStudent($data,$student_id){		
+		$edit = $this->db->updateRecords('tbl_student',$data,'student_id = '.$student_id);
+		if($edit>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	function deleteStudent($student_id){
+		$delete = $this->db->deleteRecords('tbl_student','student_id = '.$student_id);
+		if($delete>0){
 			return true;
 		}else{
 			return false;

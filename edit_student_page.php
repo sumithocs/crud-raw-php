@@ -43,7 +43,7 @@ $course_list = $courseObj->getCourseList();
         <p><input type="text" id="fname" name="fname" value="<?php echo $student_detail['fname'];?>" placeholder="First Name"></p>
         <p><input type="text" id="lname" name="lname" value="<?php echo $student_detail['lname'];?>" placeholder="Last Name"></p>
         <p><input type="file" id="photo" name="photo" value="" placeholder="Photo"></p>
-        <p><img src="photos/<?php echo $student_detail['photo'];?>"/><img alt="delete record" src="assets/delete.png" style="margin: 5px;"></p>
+        <p><img width="250" src="photos/<?php echo $student_detail['photo'];?>"/><img alt="delete record" src="assets/delete.png" style="margin: 5px;"></p>
         <p>
         	<select id="course" name="course">
         		<?php foreach($course_list as $course){?>        
