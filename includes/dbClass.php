@@ -1,6 +1,6 @@
 <?php
 class dbClass{
-	private static $instance;
+	public static $instance;
 
 	function __construct(){
 		//connect to db
@@ -46,8 +46,12 @@ class dbClass{
 		}
 		
 		$query .= "FROM ".$table;
+		
 		if($condition == ""){
 			$query .= $condition;
+		}
+		else{
+			$query .= " WHERE ".$condition;
 		}
 		//can extended to limit and offset
 			
@@ -74,6 +78,31 @@ class dbClass{
 		return mysql_insert_id();
 		
 	}
+	
+	function updateRecords($table,$data,$conditions){
+	
+		$columns = implode(",",array_keys($data));
+		$values = implode("','",array_values($data));
+		
+		foreach ($data as $key => $value) {
+		
+			$value = mysql_real_escape_string($value); // this is dedicated to @Jon
+			$value = "'$value'";
+			$updates[] = "$key = $value";
+		}
+		
+		$implodeArray = implode(', ', $updates);
+		//UPDATE Customers SET ContactName='Alfred Schmidt', City='Hamburg' WHERE CustomerName='Alfreds Futterkiste';
+		$query = "UPDATE ".$table." SET ";
+		$query .= $implodeArray;
+		$query .= " WHERE ".$conditions;
+		//echo $query;die;
+		mysql_query($query) or die(mysql_error());
+		return mysql_affected_rows();
+	
+	}
+	
+	
 }
 
 ?>

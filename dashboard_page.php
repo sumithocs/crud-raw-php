@@ -50,7 +50,7 @@ $student_list = $student->getStudentList();
   					<div class="column-<?php echo $style;?>"><img alt="student photo" src="photos/<?php echo $student['photo'];?>" width="100"></div>
   					<div class="column-<?php echo $style;?>"><?php echo $student['fname'];?> <?php echo $student['lname'];?></div>
   					<div class="column-<?php echo $style;?>"><?php echo $student['coursename'];?></div>
-  					<div class="column-<?php echo $style;?>"><img alt="edit record" src="assets/edit.png" style="margin: 5px;"><img alt="delete record" src="assets/delete.png" style="margin: 5px;"></div>
+  					<div class="column-<?php echo $style;?>"><a href="edit_student_page.php?student_id=<?php echo $student['student_id'];?>"><img alt="edit record" src="assets/edit.png" style="margin: 5px;"></a><img alt="delete record" src="assets/delete.png" style="margin: 5px;"></div>
   				
   				<?php }?>
   			</div>

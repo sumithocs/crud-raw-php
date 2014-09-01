@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once 'includes/studentClass.php';
-$student = new studentClass;
+$studentObj = new studentClass;
 
 $action = $_POST['action'];
 
@@ -12,8 +12,8 @@ if($action == 'add')
 	$data['fname'] = $_POST['fname'];
 	$data['lname'] = $_POST['lname'];
 		
-	if (empty($_FILES['photo']['name']) && $_FILES["photo"]["error"] > 0) {
-		$data['photo'] = "";
+	if (empty($_FILES['photo']['name']) || $_FILES["photo"]["error"] > 0) {
+		$data['photo'] = "no_image.jpg";
 	}
 	else
 	{
@@ -24,7 +24,7 @@ if($action == 'add')
 	$data['course_id'] =  $_POST['course'];	
 	
 	//INSERT INTO tbl_student VALUES (value1,value2,value3,...);
-	if($student->add_student($data))
+	if($studentObj->add_student($data))
 	{
 		$_SESSION['msg'] = "Added Successfully";
 	}
@@ -38,5 +38,32 @@ if($action == 'add')
 }
 elseif($action == 'edit')
 {
+	$student_id = $_POST['student_id'];
+	$data = array();
+	$data['fname'] = $_POST['fname'];
+	$data['lname'] = $_POST['lname'];
+	if(!empty($_FILES['photo']['name'])){//if a new file selected	
+		if ($_FILES["photo"]["error"] > 0) {
+			$data['photo'] = "no_image.jpg";
+		}
+		else
+		{
+			move_uploaded_file($_FILES["photo"]["tmp_name"],"photos/".$_FILES["photo"]["name"]);
+			$data['photo'] = $_FILES["photo"]["name"];
+		}
+	}
 	
+	$data['course_id'] =  $_POST['course'];
+	
+	if($studentObj->edit_student($data,$student_id))
+	{
+		$_SESSION['msg'] = "Edited Successfully";
+	}
+	else
+	{
+		$_SESSION['msg'] = "Editing Failed!!";
+	}
+	
+	header("Location: dashboard_page.php");
+	die();
 }

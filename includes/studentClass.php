@@ -1,12 +1,13 @@
 <?php
-include 'includes/dbClass.php';
+include_once 'includes/dbClass.php';
 
 class studentClass{
 	
 	private $db;
 	
 	public function __construct(){
-		$this->db = DbClass::getInstance();		
+		//$this->db = DbClass::getInstance();	
+		$this->db = new dbClass;
 	}
 	
 	function add_student($data){		
@@ -24,9 +25,18 @@ class studentClass{
 		return $records;
 	}
 	
-	function check_user_existence($username){
-		
+	function getStudentByID($student_id){
+		$records = $this->db->getRecords('tbl_student','','student_id = '.$student_id);
+		return $records;
 	}
 	
+	function edit_student($data,$student_id){		
+		$insert_id = $this->db->updateRecords('tbl_student',$data,'student_id = '.$student_id);
+		if($insert_id>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	
 }
