@@ -83,3 +83,24 @@ elseif($action == 'delete')
 	header("Location: dashboard_page.php");
 	die();
 }
+
+elseif($action == 'view')
+{
+	$student_id = $_REQUEST['student_id'];
+	$student_detail = $studentObj->getStudentByID($student_id);	
+	$student_detail = $student_detail[0];
+	
+	include_once 'includes/courseClass.php';
+	$courseObj = new courseClass;
+	
+	$course_detail = $courseObj->getCourseByID($student_detail['course_id']);
+	$course_detail = $course_detail[0];
+	$student_detail[] = $course_detail['coursename'];	
+	
+	$response['data'] = $student_detail;
+	$response['status'] = 'success';
+	$response['msg'] = '';	
+	echo json_encode($response);
+	
+	
+}
