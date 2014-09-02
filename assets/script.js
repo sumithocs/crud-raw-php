@@ -23,11 +23,12 @@ $(document).ready(function(){
                 },
                 success: function(result) {
                     if(result.status=='success'){
-                    	var html;                    	
+                    	var html = "";                    	
                 		html += '<div>';
-                		html += '<p>'+result.data['fname']+'</p>';
-                		html += '<p>'+result.data['lname']+'</p>';
-                		html += '<p>'+result.data['coursename']+'</p>';
+                		html += '<p><b>First Name : </b>'+result.data['fname']+'</p>';
+                		html += '<p><b>Last Name : </b>'+result.data['lname']+'</p>';
+                		html += '<p><b>Course : </b>'+result.data['coursename']+'</p>';
+                		html += '<p><b>Photo</b></p>';
                 		html += '<p><img width="250" src="photos/'+result.data['photo']+'"/></p>';
                 		html += '</div>';
                 		$('#div_student_detail').html(html);

@@ -17,6 +17,7 @@ class courseClass{
 	
 	function getCourseByID($course_id){
 		$records = $this->db->getRecords('tbl_course','','course_id = '.$course_id);
+		//print_r($records);
 		return $records;
 	}
 	

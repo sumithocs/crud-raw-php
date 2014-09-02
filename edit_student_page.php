@@ -18,25 +18,22 @@ $courseObj = new courseClass;
 $course_list = $courseObj->getCourseList();
 ?>
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]> <html class="lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Edit Student</title>
   <link rel="stylesheet" href="css/style.css">
-  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+  	<script type="text/javascript" src="assets/jquery191.min.js"></script>	
 	<script type="text/javascript" src="assets/script.js"></script>
 	<script type="text/javascript" src="assets/jquery.validate.min.js"></script>
-  <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
   <section class="container">
     <div class="dashboard">
     	<div class="page-title"><h1>Edit Student</h1></div>
-  		<div class="login-detail"><h1><?php echo "Welcome ". $_SESSION['login_user'];?></h1></div>
+  		<div class="login-detail"><h1><?php echo "Welcome ". $_SESSION['login_user'];?> | <a href="auth_handler.php?action=logout">logout</a></h1></div>
   		<div class="page-title"></div>
   		<div class="login-detail"><a href="dashboard_page.php"><h3>Student List</h3></a></div> 
       <form method="post" name="edit_form" id="edit_form" action="student_handler.php" enctype="multipart/form-data">

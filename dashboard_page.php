@@ -35,7 +35,7 @@ $student_list = $student->getStudentList();
   <section class="container">
     <div class="dashboard">
     <div class="page-title"><h1>Dashboard</h1></div>
-  		<div class="login-detail"><h1><?php echo "Welcome ". $_SESSION['login_user'];?></h1></div>
+  		<div class="login-detail"><h1><?php echo "Welcome ". $_SESSION['login_user'];?> | <a href="auth_handler.php?action=logout">logout</a></h1></div>
   		<div class="page-title"><h3>Student List</h3></div>
   		<div class="login-detail"><a href="add_student_page.php"><h3>Add New</h3></a></div> 
   		<div><p style="color: red;"><?php if(isset($_SESSION['msg'])){echo $_SESSION['msg'];unset($_SESSION['msg']);}?></p></div>

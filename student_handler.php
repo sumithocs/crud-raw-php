@@ -95,7 +95,7 @@ elseif($action == 'view')
 	
 	$course_detail = $courseObj->getCourseByID($student_detail['course_id']);
 	$course_detail = $course_detail[0];
-	$student_detail[] = $course_detail['coursename'];	
+	$student_detail['coursename'] = $course_detail['coursename'];	
 	
 	$response['data'] = $student_detail;
 	$response['status'] = 'success';

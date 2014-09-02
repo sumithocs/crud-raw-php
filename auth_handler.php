@@ -3,7 +3,7 @@ session_start();
 include_once 'includes/authClass.php';
 $auth = new authClass;
 
-$action = $_POST['action'];
+$action = $_REQUEST['action'];
 
 if($action == 'login')
 {
@@ -20,7 +20,14 @@ if($action == 'login')
 	}
 	
 }
-elseif($action == 'register')
+elseif($action == 'logout')
 {
-	
+	unset($_SESSION['login_status']);
+	unset($_SESSION['login_user']) ;
+	header("Location: index.php");
+	die();
+}
+else{	
+	header("Location: index.php");
+	die();
 }
